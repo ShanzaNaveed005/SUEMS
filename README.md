@@ -1,4 +1,4 @@
-# 🎓 Smart University Education Management System (SUEMS)
+# 🎓  School Education Management System (SUEMS)
 
 ## 📌 Overview
 
