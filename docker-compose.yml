@@ -1,0 +1,30 @@
+﻿version: '3.9'
+
+services:
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: suems_sql
+    environment:
+      MSSQL_SA_PASSWORD: "123Abc@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  app:
+    build: .
+    container_name: suems_app
+    depends_on:
+      - db
+    environment:
+      DB_SERVER: "db"
+      DB_NAME: "SUEMS_DB"
+      DB_USER: "sa"
+      DB_PASSWORD: "123Abc@123"
+    stdin_open: true
+    tty: true
+
+volumes:
+  sql_data:
